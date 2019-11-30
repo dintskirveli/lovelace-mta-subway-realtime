@@ -1,7 +1,7 @@
 import { ActionConfig } from 'custom-card-helpers';
 
 // TODO Add your configuration elements here for type-checking
-export interface BoilerplateCardConfig {
+export interface MTASubwayRealtimeCardConfig {
   type: string;
   name?: string;
   show_warning?: boolean;

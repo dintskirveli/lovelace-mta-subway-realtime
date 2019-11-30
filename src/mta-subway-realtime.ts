@@ -11,22 +11,22 @@ import {
 
 import './editor';
 
-import { BoilerplateCardConfig } from './types';
+import { MTASubwayRealtimeCardConfig } from './types';
 import { actionHandler } from './action-handler-directive';
 import { CARD_VERSION } from './const';
 
 /* eslint no-console: 0 */
 console.info(
-  `%c  BOILERPLATE-CARD \n%c  Version ${CARD_VERSION}    `,
+  `%c  MTA-SUBWAY-REALTIME CARD \n%c  Version ${CARD_VERSION}    `,
   'color: orange; font-weight: bold; background: black',
   'color: white; font-weight: bold; background: dimgray',
 );
 
 // TODO Name your custom element
-@customElement('boilerplate-card')
+@customElement('mta-subway-realtime-card')
 export class BoilerplateCard extends LitElement {
   public static async getConfigElement(): Promise<LovelaceCardEditor> {
-    return document.createElement('boilerplate-card-editor') as LovelaceCardEditor;
+    return document.createElement('mta-subway-realtime-card-editor') as LovelaceCardEditor;
   }
 
   public static getStubConfig(): object {
@@ -35,9 +35,9 @@ export class BoilerplateCard extends LitElement {
 
   // TODO Add any properities that should cause your element to re-render here
   @property() public hass?: HomeAssistant;
-  @property() private _config?: BoilerplateCardConfig;
+  @property() private _config?: MTASubwayRealtimeCardConfig;
 
-  public setConfig(config: BoilerplateCardConfig): void {
+  public setConfig(config: MTASubwayRealtimeCardConfig): void {
     // TODO Check for required fields and that they are of the proper format
     if (!config || config.show_error) {
       throw new Error('Invalid configuration');
