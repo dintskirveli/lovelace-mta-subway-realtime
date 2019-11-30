@@ -1,5 +1,5 @@
 {
-    "name": "Boilerplate Card",
+    "name": "MTA Subway Realtime Card",
     "render_readme": true,
-    "filename": "boilerplate-card.js"
+    "filename": "mta-subway-realtime-card.js"
 }

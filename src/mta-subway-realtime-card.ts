@@ -24,7 +24,7 @@ console.info(
 
 // TODO Name your custom element
 @customElement('mta-subway-realtime-card')
-export class BoilerplateCard extends LitElement {
+export class MTASubwayRealtimeCard extends LitElement {
   public static async getConfigElement(): Promise<LovelaceCardEditor> {
     return document.createElement('mta-subway-realtime-card-editor') as LovelaceCardEditor;
   }
@@ -48,7 +48,7 @@ export class BoilerplateCard extends LitElement {
     }
 
     this._config = {
-      name: 'Boilerplate',
+      name: 'MTASubwayRealtime',
       ...config,
     };
   }
@@ -81,7 +81,7 @@ export class BoilerplateCard extends LitElement {
           repeat: this._config.hold_action ? this._config.hold_action.repeat : undefined,
         })}
         tabindex="0"
-        aria-label=${`Boilerplate: ${this._config.entity}`}
+        aria-label=${`MTASubwayRealtime: ${this._config.entity}`}
       ></ha-card>
     `;
   }

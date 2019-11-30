@@ -3,14 +3,17 @@ import typescript from 'rollup-plugin-typescript2';
 import serve from 'rollup-plugin-serve';
 
 export default {
-  input: ['src/mta-subway-realtime.ts'],
+  input: ['src/mta-subway-realtime-card.ts'],
   output: {
     dir: './dist',
     format: 'es',
   },
   plugins: [
     resolve(),
-    typescript(),
+    typescript({
+      typescript: require('typescript'),
+      objectHashIgnoreUnknownHack: true,
+    }),
     serve({
       contentBase: './dist',
       host: '0.0.0.0',
@@ -20,5 +23,10 @@ export default {
         'Access-Control-Allow-Origin': '*',
       },
     }),
+    copy({
+      targets: [
+        { src: 'images/*.svg', dest: 'dist/public' },
+      ]
+    })
   ],
 };

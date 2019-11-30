@@ -24,7 +24,7 @@ jobs:
 
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: /home/runner/work/lovelace-mta-subway-realtime/lovelace-mta-subway-realtime/dist/mta-subway-realtime.js
-          asset_name: mta-subway-realtime.js
+          file: /home/runner/work/lovelace-mta-subway-realtime/lovelace-mta-subway-realtime/dist/mta-subway-realtime-card.js
+          asset_name: mta-subway-realtime-card.js
           tag: ${{ github.ref }}
           overwrite: true
