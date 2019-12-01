@@ -1,6 +1,7 @@
 import resolve from 'rollup-plugin-node-resolve';
 import typescript from 'rollup-plugin-typescript2';
 import serve from 'rollup-plugin-serve';
+import copy from 'rollup-plugin-copy'
 
 export default {
   input: ['src/mta-subway-realtime-card.ts'],

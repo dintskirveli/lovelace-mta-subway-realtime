@@ -116,7 +116,8 @@ export class MTASubwayRealtimeCardEditor extends LitElement implements LovelaceC
     }
 
     // You can restrict on domain type
-    const entities = Object.keys(this.hass.states).filter(eid => eid.substr(0, eid.indexOf('.')) === 'mta_subway');
+    //const entities = Object.keys(this.hass.states).filter(eid => eid.substr(0, eid.indexOf('.')) === 'mta_subway');
+    const entities = Object.keys(this.hass.states).filter(eid => eid.indexOf('mta_') > -1);
 
     return html`
       <div class="card-config">

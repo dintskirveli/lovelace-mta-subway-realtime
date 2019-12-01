@@ -71,9 +71,18 @@ export class MTASubwayRealtimeCard extends LitElement {
       `;
     }
 
+    console.log(this.hass.states[this._config.entity]);
+
+    const header_name =
+      this.hass.states[this._config.entity].attributes.station_name +
+      ' to ' +
+      this.hass.states[this._config.entity].attributes.station_direction_label;
+
+    const now = new Date();
+
     return html`
       <ha-card
-        .header=${this._config.name}
+        .header=${header_name}
         @action=${this._handleAction}
         .actionHandler=${actionHandler({
           hasHold: hasAction(this._config.hold_action),
@@ -81,8 +90,33 @@ export class MTASubwayRealtimeCard extends LitElement {
           repeat: this._config.hold_action ? this._config.hold_action.repeat : undefined,
         })}
         tabindex="0"
-        aria-label=${`MTASubwayRealtime: ${this._config.entity}`}
-      ></ha-card>
+        aria-label=${`MTASubwayRealtime: ${this.hass.states[this._config.entity].attributes.friendly_name}`}
+      >
+        <div style="width: 100%;">
+          <div style="text-align: center;">
+            <b>Data updated: </b>${new Date(
+              this.hass.states[this._config.entity].attributes.arrivals[0].last_updated * 1000,
+            ).toLocaleTimeString()} <b>Card updated: </b>${now.toLocaleTimeString()}
+          </div>
+          <div style="display: table; padding: 20px;">
+            ${this.hass.states[this._config.entity].attributes.arrivals.slice(0, 4).map(arrival => {
+              return html`
+                <div style="display: table-row">
+                  <div style="display: table-cell;">
+                    <img
+                      class="lineLogo"
+                      src="/community_plugin/lovelace-mta-subway-realtime/public/${arrival.line.toLowerCase()}.svg"
+                    />
+                  </div>
+                  <div style="display: table-cell; vertical-align: middle; padding-left: 20px;">
+                    <b style="font-size: 30px;">${Math.ceil((arrival.time * 1000 - now.getTime()) / 1000 / 60)} min</b>
+                  </div>
+                </div>
+              `;
+            })}
+          </div>
+        </div>
+      </ha-card>
     `;
   }
 
@@ -99,6 +133,10 @@ export class MTASubwayRealtimeCard extends LitElement {
         color: black;
         background-color: #fce588;
         padding: 8px;
+      }
+      .lineLogo {
+        width: 50px;
+        height: auto;
       }
     `;
   }
